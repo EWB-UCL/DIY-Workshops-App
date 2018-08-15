@@ -329,6 +329,50 @@ iframe {
   background-color: #fcdd6f;
 }
 
+.quizmenubtn {
+  color: #47525E;
+  font-family: Ubuntu-Regular;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 8px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(71, 82, 94, 0);
+  padding: 0 20px;
+  width: 100%;
+  border: 1px solid #47525E;
+  border-radius: 8px;
+  height: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+	
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.quizheading {
+  background-color: #FFFFFF;
+  opacity: 0.57;
+  width: 192px;
+  height: 64px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/
