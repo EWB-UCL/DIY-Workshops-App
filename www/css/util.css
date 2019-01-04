@@ -2370,6 +2370,11 @@
 	width: 100%;
 }
 
+.header-img{
+	width:100%;
+	height:auto;
+	opacity:0.8;
+}
 
 
 /*[ Hover ]
@@ -2982,12 +2987,3 @@
 	right: 0px;
 	bottom: 0px;
 }
-
-
-
-
-
-
-
-
-
