@@ -37,6 +37,13 @@
 
 		<h1 class = "quizheading" style="position:absolute;top:100px;">New Diary Entry</h1>
 
+    <form action="/diary_form.php" method="post" enctype="multipart/form-data">
+      <input type="text" name="title" placeholder="Title"><br>
+      <input type="text" name="content" placeholder="Content"><br>
+      Add images or videos:<br>
+      <input type="file" name="fileToUpload"><br>
+      <input type="submit" value="Submit">
+    </form>
 
 		<!-- code for saving record in database record -->
 
