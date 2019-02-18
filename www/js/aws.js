@@ -21,10 +21,24 @@ function initCognitoSDK(){
 }
 
 function pressButton(auth){
-	console.log('test1');
+	//console.log('test1');
 	auth.getSession();
 }
 
+function settings(){
+	document.getElementById("signout").addEventListener("click",function(){signOut(auth);});
+	document.getElementById("change-password").addEventListener("click",function(){changePassword(auth);});
+}
+
+function signOut(auth){
+	if (cognitoUser != null) {
+		cognitoUser.signOut();
+	}
+}
+
+function changePassword(auth){
+
+}
 
 function onLoadAWS(){
 	console.log('test2');
