@@ -444,6 +444,33 @@ iframe {
   display: flex;
 }
 
+.diarybtn{
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 75%;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+.settingsbtn{
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #9A60FF;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 75%;
+    border: 1px solid #8F49FF;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
 
 /*------------------------------------------------------------------
 [ Alert validate ]*/
