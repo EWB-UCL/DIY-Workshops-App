@@ -37,17 +37,14 @@
 
 		<h1 class = "quizheading" style="position:absolute;top:100px;">New Diary Entry</h1>
 
-    <form action="/diary_form.php" method="post" enctype="multipart/form-data">
-      <input type="text" name="title" placeholder="Title"><br>
-      <input type="text" name="content" placeholder="Content"><br>
-      Add images or videos:<br>
-      <input type="file" name="fileToUpload"><br>
-      <input type="submit" value="Submit">
+		<form>
+      <input class="diary" type="text" name="title" id="title" placeholder="Title"><br><br>
+      <textarea class="diary" name="content" id="content" placeholder="Content"></textarea><br><br>
+      <input class="diary" type="submit" value="Submit" id="submit">
     </form>
+		<div id="success"></div>
 
-		<!-- code for saving record in database record -->
-
-    <button class = "quizmenubtn" onclick="window.location.href='progress.html'">Back</button>
+    <button class = "backbtn" onclick="window.location.href='progress.html'">Back</button>
   </div>
 </div>
 
