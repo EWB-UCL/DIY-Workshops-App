@@ -1,6 +1,42 @@
 
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
 
+input[type="text"].diary,textarea.diary,
+select.diary{
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  margin-bottom: 30px;
+}
 
+input[type="submit"].diary,
+select{
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
@@ -337,6 +373,33 @@ iframe {
   background-color: #fcdd6f;
 }
 
+.backbtn {
+  color: #47525E;
+  font-family: Ubuntu-Regular;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 8px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(71, 82, 94, 0);
+  padding: 0 20px;
+  width: 100%;
+  border: 1px solid #47525E;
+  border-radius: 8px;
+  height: 50px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
 .quizmenubtn {
   color: #47525E;
   font-family: Ubuntu-Regular;
@@ -357,7 +420,7 @@ iframe {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-	
+
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
