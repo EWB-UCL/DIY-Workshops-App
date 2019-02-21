@@ -45,7 +45,7 @@
 					</div>-->
 
 					<div class="container-login100-form-btn m-t-17">
-						<a class="login-btn" id="login-btn-init" href="javascript:void(0)" title="Login">
+						<a class="login-btn" id="login-btn-init" href="#" title="Login">
 							Login
 						</a>
 					</div>
@@ -69,7 +69,14 @@
     <script src="vendor/jwt-decode.min.js"></script>
 	<script src="js/aws.js"> </script>
     <script>
-		onLoadAWS();
+		$(document).ready(function() {
+			$('#login-btn-init').click(function() {
+				var onComplete = function(ev) {
+					window.location.href = 'homepage.html';
+				}
+				awsCognitoAuth.getSession(onComplete);
+			});
+		});
 	</script>
 </body>
 </html>

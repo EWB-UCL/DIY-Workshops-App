@@ -15,7 +15,6 @@
  * limitations under the License. 
  */
 
- var InAppBrowser;
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1671,19 +1670,23 @@ return /******/ (function(modules) { // webpackBootstrap
 				 * 
 				 * http://phonegap-tips.com/articles/google-api-oauth-with-phonegaps-inappbrowser.html
 				 */
-				InAppBrowser = cordova.InAppBrowser.open(URL, '_blank', 'location=no');
-				
-				InAppBrowser.addEventListener('loadstart', function(ev) {
-					if (ev.url.indexOf('access_token') !== -1) {
-						InAppBrowser.close();
-					}
-				});
-	
-				InAppBrowser.addEventListener('exit', function(ev) {
-					if (typeof callback !== 'undefined') {
-						callback(ev);
-					}					
-				});
+				if (typeof cordova !== 'undefined') {
+					var browser = cordova.InAppBrowser.open(URL, '_blank', 'location=no');
+
+					browser.addEventListener('loadstart', function(ev) {
+						if (ev.url.indexOf('access_token') !== -1) {
+							browser.close();
+						}
+					});
+		
+					browser.addEventListener('exit', function(ev) {
+						if (typeof callback !== 'undefined') {
+							callback(ev);
+						}					
+					});
+				} else {
+					window.open(URL, this.getCognitoConstants().SELF);
+				}
 	    }
 
 	    /**

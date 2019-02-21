@@ -1,59 +1,67 @@
-function initCognitoSDK(){
-	var authData = {
-		ClientId : '8ljobc8u398stdm46gmvvugo4', // Your client id here
-		AppWebDomain : 'ucl-ewb-workshops.auth.eu-west-2.amazoncognito.com',
-		TokenScopesArray : ['phone','email','openid','aws.cognito.signin.user.admin','profile'], // e.g.['phone', 'email', 'profile','openid', 'aws.cognito.signin.user.admin'],
-		RedirectUriSignIn : 'http://localhost:8000/homepage.html',
-		RedirectUriSignOut : 'http://localhost:8000'
-		//IdentityProvider : '<TODO: add identity provider you want to specify>', // e.g. 'Facebook',
-		//UserPoolId : 'eu-west-2_zBeNrhrio', // Your user pool id here
-		//AdvancedSecurityDataCollectionFlag : false, // e.g. true
-	};
-	var auth = new AmazonCognitoIdentity.CognitoAuth(authData);
-	//Note:This userhandler doesn't work since the callback is to a different html page???
-	auth.userhandler = {
-		onSuccess: function(result){
-			showSignedIn(result);
-		},
-		onFailure: function(result){
-			console.log("Error");
-		}
-	};
-	return auth;
-}
+var awsCognitoAuth = new AmazonCognitoIdentity.CognitoAuth({
+	ClientId : '8ljobc8u398stdm46gmvvugo4', // Your client id here
+	AppWebDomain : 'ucl-ewb-workshops.auth.eu-west-2.amazoncognito.com',
+	TokenScopesArray : ['phone','email','openid','aws.cognito.signin.user.admin','profile'], // e.g.['phone', 'email', 'profile','openid', 'aws.cognito.signin.user.admin'],
+	RedirectUriSignIn : 'http://localhost:8000/homepage.html',
+	RedirectUriSignOut : 'http://localhost:8000'
+});
 
-function pressButton(auth){
-	var details = auth.getSession(function() {
-		console.log("Auth finished, redirecting to home page");
-		window.location.href = 'homepage.html';
-	});
+// function initCognitoSDK(){
+// 	var authData = {
+// 		ClientId : '8ljobc8u398stdm46gmvvugo4', // Your client id here
+// 		AppWebDomain : 'ucl-ewb-workshops.auth.eu-west-2.amazoncognito.com',
+// 		TokenScopesArray : ['phone','email','openid','aws.cognito.signin.user.admin','profile'], // e.g.['phone', 'email', 'profile','openid', 'aws.cognito.signin.user.admin'],
+// 		RedirectUriSignIn : 'http://localhost:8000/homepage.html',
+// 		RedirectUriSignOut : 'http://localhost:8000'
+// 		//IdentityProvider : '<TODO: add identity provider you want to specify>', // e.g. 'Facebook',
+// 		//UserPoolId : 'eu-west-2_zBeNrhrio', // Your user pool id here
+// 		//AdvancedSecurityDataCollectionFlag : false, // e.g. true
+// 	};
+// 	var auth = new AmazonCognitoIdentity.CognitoAuth(authData);
+// 	//Note:This userhandler doesn't work since the callback is to a different html page???
+// 	auth.userhandler = {
+// 		onSuccess: function(result){
+// 			showSignedIn(result);
+// 		},
+// 		onFailure: function(result){
+// 			console.log("Error");
+// 		}
+// 	};
+// 	return auth;
+// }
 
-	console.log(details);
-}
+// function pressButton(auth){
+// 	var details = auth.getSession(function() {
+// 		console.log("Auth finished, redirecting to home page");
+// 		window.location.href = 'homepage.html';
+// 	});
 
-function settings(){
-	document.getElementById("signout").addEventListener("click",function(){signOut(auth);});
-	document.getElementById("change-password").addEventListener("click",function(){changePassword(auth);});
-}
+// 	console.log(details);
+// }
 
-function signOut(auth){
-	if (cognitoUser != null) {
-		cognitoUser.signOut();
-	}
-}
+// function settings(){
+// 	document.getElementById("signout").addEventListener("click",function(){signOut(auth);});
+// 	document.getElementById("change-password").addEventListener("click",function(){changePassword(auth);});
+// // }
 
-function changePassword(auth){
+// function signOut(auth){
+// 	if (cognitoUser != null) {
+// 		cognitoUser.signOut();
+// 	}
+// }
 
-}
+// function changePassword(auth){
 
-function onLoadAWS(){
-	console.log('test2');
-	var auth = initCognitoSDK();
-	console.log(auth);
-	document.getElementById("login-btn-init").addEventListener("click",function(){pressButton(auth);});
-	var curUrl = window.location.href;
-	auth.parseCognitoWebResponse(curUrl);
-}
+// // }
+
+// function onLoadAWS(){
+// 	console.log('test2');
+// 	var auth = initCognitoSDK();
+// 	console.log(auth);
+// 	document.getElementById("login-btn-init").addEventListener("click",function(){pressButton(auth);});
+// 	var curUrl = window.location.href;
+// 	auth.parseCognitoWebResponse(curUrl);
+// }
 
 function onLoadMain(){
 	//foo is now loaded.
