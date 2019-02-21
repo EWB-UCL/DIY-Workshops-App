@@ -1671,7 +1671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				 * 
 				 * http://phonegap-tips.com/articles/google-api-oauth-with-phonegaps-inappbrowser.html
 				 */
-				InAppBrowser = cordova.InAppBrowser.open(URL, '_blank');
+				InAppBrowser = cordova.InAppBrowser.open(URL, '_blank', 'location=no');
 				
 				InAppBrowser.addEventListener('loadstart', function(ev) {
 					if (ev.url.indexOf('access_token') !== -1) {
