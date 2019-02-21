@@ -15,14 +15,18 @@ function initCognitoSDK(){
 		onSuccess: function(result){
 			showSignedIn(result);
 		},
-		onFailure: function(result){console.log("Error");}
+		onFailure: function(result){
+			console.log("Error");
+		}
 	};
 	return auth;
 }
 
 function pressButton(auth){
 	//console.log('test1');
-	auth.getSession();
+	var details = auth.getSession();
+
+	console.log(details);
 }
 
 function settings(){
