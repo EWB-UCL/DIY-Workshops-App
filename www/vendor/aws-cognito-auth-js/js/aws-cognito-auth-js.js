@@ -15,6 +15,7 @@
  * limitations under the License. 
  */
 
+ var InAppBrowser;
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -1161,7 +1162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  }, {
 	    key: 'getSession',
-	    value: function getSession() {
+	    value: function getSession(callback) {
 	      var tokenScopesInputSet = new Set(this.TokenScopesArray);
 	      var cachedScopesSet = new Set(this.signInUserSession.tokenScopes.getScopes());
 	      var URL = this.getFQDNSignIn();
@@ -1179,11 +1180,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.signInUserSession.setIdToken(idToken);
 	        this.signInUserSession.setAccessToken(accessToken);
 	        this.signInUserSession.setRefreshToken(refreshToken);
-	        this.launchUri(URL);
+	        this.launchUri(URL, callback);
 	      } else if (this.signInUserSession.isValid()) {
 	        return this.userhandler.onSuccess(this.signInUserSession);
 	      } else if (!this.signInUserSession.getRefreshToken() || !this.signInUserSession.getRefreshToken().getToken()) {
-	        this.launchUri(URL);
+	        this.launchUri(URL, callback);
 	      } else {
 	        this.refreshSession(this.signInUserSession.getRefreshToken().getToken());
 	      }
@@ -1590,11 +1591,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  }, {
 	    key: 'onSuccessRefreshToken',
-	    value: function onSuccessRefreshToken(jsonData) {
+	    value: function onSuccessRefreshToken(jsonData, callback) {
 	      var jsonDataObject = JSON.parse(jsonData);
 	      if (Object.prototype.hasOwnProperty.call(jsonDataObject, this.getCognitoConstants().ERROR)) {
 	        var URL = this.getFQDNSignIn();
-	        this.launchUri(URL);
+	        this.launchUri(URL, callback);
 	      } else {
 	        if (Object.prototype.hasOwnProperty.call(jsonDataObject, this.getCognitoConstants().IDTOKEN)) {
 	          this.signInUserSession.setIdToken(new _CognitoIdToken2.default(jsonDataObject.id_token));
@@ -1650,8 +1651,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  }, {
 	    key: 'launchUri',
-	    value: function launchUri(URL) {
-	      window.open(URL, this.getCognitoConstants().SELF);
+	    value: function launchUri(URL, callback) {
+				
+				/**
+				 * Filty filthy hack
+				 * 
+				 * The problem here is that this flow is intended for the web. The 
+				 * idea is that your app gets rediected to AWS and then AWS redirects
+				 * the browser back to your apps URL when it's finished with the 
+				 * access token attached as a query param 
+				 * 
+				 * Unfortunately, we can't do that here, as it's not possible to redirect
+				 * back to a native app, nor does our native app run a web server in it
+				 * (or we could use localhost:8000)
+				 * 
+				 * This hack uses the loaddata event of the in app browser to detect 
+				 * whenever the page changes. When it does, we check to see if an 
+				 * access token is present, and if so, close the browser window
+				 * 
+				 * http://phonegap-tips.com/articles/google-api-oauth-with-phonegaps-inappbrowser.html
+				 */
+				InAppBrowser = cordova.InAppBrowser.open(URL, '_blank');
+				
+				InAppBrowser.addEventListener('loadstart', function(ev) {
+					if (ev.url.indexOf('access_token') !== -1) {
+						InAppBrowser.close();
+					}
+				});
+	
+				InAppBrowser.addEventListener('exit', function(ev) {
+					if (typeof callback !== 'undefined') {
+						callback(ev);
+					}					
+				});
 	    }
 
 	    /**
@@ -1700,11 +1732,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  }, {
 	    key: 'signOut',
-	    value: function signOut() {
+	    value: function signOut(callback) {
 	      var URL = this.getFQDNSignOut();
 	      this.signInUserSession = null;
 	      this.clearCachedTokensScopes();
-	      this.launchUri(URL);
+	      this.launchUri(URL, callback);
 	    }
 
 	    /**

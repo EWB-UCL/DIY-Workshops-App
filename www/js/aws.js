@@ -23,8 +23,10 @@ function initCognitoSDK(){
 }
 
 function pressButton(auth){
-	//console.log('test1');
-	var details = auth.getSession();
+	var details = auth.getSession(function() {
+		console.log("Auth finished, redirecting to home page");
+		window.location.href = 'homepage.html';
+	});
 
 	console.log(details);
 }

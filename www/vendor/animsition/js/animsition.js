@@ -122,7 +122,7 @@
             // middle mouse button issue #24
             // if(middle mouse button || command key || shift key || win control key)
             if (event.which === 2 || event.metaKey || event.shiftKey || navigator.platform.toUpperCase().indexOf('WIN') !== -1 && event.ctrlKey) {
-              window.open(url, '_blank');
+              cordova.InAppBrowser.open(url, '_blank');
             } else {
               __.out.call(_this, $self, url);
             }
