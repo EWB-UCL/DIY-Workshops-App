@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<style>
+.center {
+  display: block;
+  margin-top: 120px;
+  margin-left: 25%;
+  width: 700px;
+ height: 300px;
+}
+.addPos{
+  margin-top: 20px;
+  margin-left: 25%;
+  width: 30px;
+ height: 30px;
+}
+.sortPos{
+}
+.searchBar{
+  border-color: black;
+  width: 200px;
+  height: 30px;
+  margin-top: 40px;
+  margin-left:215px;
+  border-radius: 25px;
+  background-color: gainsboro;
+}
+.dropbtn {
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    margin-top: 25px;
+    margin-left: 215px;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: gainsboro;
+}
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightgrey;
+    width: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(3,40,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    margin-left: 650px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.show {display:block;}
+table.blueTable {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  border: 1px solid #909191;
+  background-color: #EEEEEE;
+  width: 700px;
+  margin-left: 25%;
+  margin-top: 20px;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.blueTable td, table.blueTable th {
+  border: 1px solid #AAAAAA;
+  padding: 10px 10px;
+
+}
+table.blueTable tbody td {
+  font-size: 13px;
+  font-weight: bold;
+}
+table.blueTable tr:nth-child(even) {
+  background: #FFFFFF;
+}
+table.blueTable thead {
+  background: #FEF8A0;
+  background: -moz-linear-gradient(top, #fefab8 0%, #fef8a9 66%, #FEF8A0 100%);
+  background: -webkit-linear-gradient(top, #fefab8 0%, #fef8a9 66%, #FEF8A0 100%);
+  background: linear-gradient(to bottom, #fefab8 0%, #fef8a9 66%, #FEF8A0 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+  border-left: 2px solid #000000;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+table.blueTable tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  background: #FFFFFF;
+  background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 66%, #FFFFFF 100%);
+  background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 66%, #FFFFFF 100%);
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 66%, #FFFFFF 100%);
+  border-top: 2px solid #444444;
+}
+table.blueTable tfoot td {
+  font-size: 14px;
+}
+table.blueTable tfoot .links {
+  text-align: right;
+}
+table.blueTable tfoot .links a{
+  display: inline-block;
+  background: #ECECEC;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+word {
+  font-size: 30;
+  margin-left: 45%;
+
+}
+li {
+    white-space: nowrap;
+}
+
+</style>
+<meta charset = "utf-8">
+<meta name = "viewport" content = "width=device-width", initial-scale = 1>
+
+<link href = "css/styles.css" rel = "stylesheet" type = "text/css">
+
+</head>
+
+<header>
+  <li>
+    <word>Forum</word>
+<img src="banner.png" alt="people working on laptop" class="center">
+  <img title ="add" src="add-icon.png" alt="add" class="addPos">
+   <input  type="text" placeholder="Search For questions..." class="searchBar">
+   <input onclick="myFunction()" class="dropbtn" type="image" name ="sort" src="sort-icon.png" alt="sort" id="Sort">
+
+</li>
+<div class="sortDropdown" position = "sortPos">
+ <div id="sortDropdown" class="dropdown-content" position = "sortPos">
+   <a  href="#">Oldest First</a>
+   <a href="#">Newest First</a>
+
+<script>function myFunction() {
+    document.getElementById("sortDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</div>
+ </div>
+
+</header>
+<table class="blueTable">
+<thead>
+<tr>
+<th>Questions:</th>
+<th>Resolved?</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4">
+<div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a></div>
+</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td>question1</td><td>NO</td>
+<tr>
+<td>question2</td><td>YES</td>
+<tr>
+<td>question3</td><td>YES</td>
+<tr>
+<td>question4</td><td>YES</td>
+</tbody>
+</tr>
+</table>
+
+</body>
+
+</head>
+</html>
